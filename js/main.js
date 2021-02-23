@@ -7,7 +7,6 @@ class Products {
         this.container = document.querySelector(selector);
         this._fetchData();
         this._render();
-        this._sumProducts();
     }
 
     _fetchData() {
@@ -20,12 +19,8 @@ class Products {
     }
 
     //Метод определяющий суммарную стоимость всех товаров
-    _sumProducts() {
-        let sum = 0;
-
-        this.products.forEach(product => {
-            sum += product.price;
-            });
+    calcSum() {
+        return this.products.reduce((accum, item) => accum += item.price, 0);
     }
 
     _render() {
@@ -76,3 +71,4 @@ class CartItem {
 }
 
 const list = new Products('.products');
+console.log(list.calcSum());
